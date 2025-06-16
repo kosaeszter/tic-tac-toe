@@ -1,0 +1,58 @@
+.cell
+{
+    font-size: xx-large;
+    width:15vh;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2vh;
+}
+
+
+
+.board
+{
+    gap: 2vh;
+}
+
+.board-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 97vh;
+    width: 97vw;
+}
+
+.row {
+
+}
+
+
+.cell
+{
+  background-color: #844bcfc8;
+}
+
+.cell:hover
+{
+  background-color: #844bcf;
+}
+
+.x-cell{
+    background-color: rgba(207, 123, 204, 0.871);
+}
+
+.x-cell:hover{
+    background-color: rgba(207, 123, 204, 0.871);
+}
+
+.o-cell
+{
+   background-color: rgb(67, 196, 196);
+}
+
+.o-cell:hover{
+   background-color: rgb(67, 196, 196);
+}

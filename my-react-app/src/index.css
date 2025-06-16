@@ -68,3 +68,47 @@
   font-size: x-large;
   text-align: center;
 }
+
+.board{
+  display: flex;
+}
+
+
+.settings
+{
+  padding: 17vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  color: rgb(224, 227, 180);
+  font-size: x-large;
+}
+
+select
+{
+  width: 20vh;
+  border-radius: 2vh;
+  height: 5vh;
+ background-color: rgba(224, 227, 180, 0.701);
+  font-family: 'Orbitron', sans-serif;
+  color: rgb(6, 61, 43);
+  font-size: x-large;
+}
+
+button
+{
+  background-color: rgba(224, 227, 180, 0.701);
+  width: 100%;
+  border-radius: 2vh;
+  height: 10vh;
+  font-family: 'Orbitron', sans-serif;
+  font-size: x-large;
+}
+
+button:hover
+{
+ background-color: rgba(224, 227, 180, 0.948);
+ scale: 1.05;
+  font-size: x-large;
+}
+
