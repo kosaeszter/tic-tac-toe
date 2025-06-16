@@ -1,15 +1,14 @@
 .cell
 {
     font-size: xx-large;
-    width:15vh;
-    height: 15vh;
+    width:12vh;
+    height: 12vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     margin-top: 2vh;
 }
-
 
 
 .board
@@ -25,8 +24,9 @@
     width: 97vw;
 }
 
-.row {
-
+.button:disabled:hover
+{
+    scale: 1;
 }
 
 
@@ -56,3 +56,4 @@
 .o-cell:hover{
    background-color: rgb(67, 196, 196);
 }
+

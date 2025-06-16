@@ -1,7 +1,22 @@
+import { useState } from "react";
 import Board from "../components/Board/Board";
+import { useLocation } from "react-router-dom";
+import { getEmptyBoard } from '../utils/boardplay';
 
 function PlayAI() {
-  return <Board matrix={[["", "", "", "x"],["o", "x", "o", "x"], ["o", "x", "o", "x"], ["o", "x", "o", "x"]]} dimension={4}></Board>
+
+    const location = useLocation();
+    const boardSize = location.state?.boardSize;
+    const winLength = location.state?.winLength;
+    const mode= location.state?.mode;
+
+  return<> 
+  <Board matrix={getEmptyBoard(boardSize)} 
+           dimension={boardSize} 
+            winLength={winLength} 
+          mode={mode}>
+          </Board>
+  </> 
 }
 
 export default PlayAI

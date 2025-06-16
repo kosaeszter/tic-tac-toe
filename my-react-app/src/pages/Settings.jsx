@@ -9,7 +9,6 @@ function Settings({player})
     const mode = location.state?.mode;
     const navigate = useNavigate();
 
-
   const [boardSize, setBoardSize] = useState(3);
   const [winLength, setWinLength] = useState(3);
 
@@ -22,7 +21,7 @@ function Settings({player})
     else
     {
         console.log(mode, boardSize, winLength);
-        navigate("/play-ai", { state: { mode, boardSize, winLength }});
+        navigate("/play-ai", { state: {boardSize, winLength, mode}});
     }
   }
 
@@ -30,7 +29,7 @@ function Settings({player})
       <div>
         How big should the board be?      </div>
         <select value={boardSize} onChange={(e) => setBoardSize(Number(e.target.value))}>
-          {[3, 4, 5, 6, 7, 8, 9, 10].map(size => (
+          {[3, 4, 5, 6].map(size => (
             <option key={size} value={size}>{size}x{size}</option>
           ))}
         </select>
