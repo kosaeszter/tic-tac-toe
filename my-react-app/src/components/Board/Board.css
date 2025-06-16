@@ -1,8 +1,8 @@
 .cell
 {
     font-size: xx-large;
-    width:12vh;
-    height: 12vh;
+    width:10vh;
+    height: 10vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -20,8 +20,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 97vh;
-    width: 97vw;
+    height: 70vh;
+    width: 98vw;
 }
 
 .button:disabled:hover
@@ -57,3 +57,76 @@
    background-color: rgb(67, 196, 196);
 }
 
+
+@keyframes aqua-glow {
+  0% {
+    box-shadow: 0 0 3px #0ff, 0 0 10px #0ff;
+  }
+  50% {
+    box-shadow: 0 0 4px #0ff, 0 0 30px #0ff;
+  }
+  100% {
+    box-shadow: 0 0 3px #0ff, 0 0 10px #0ff;
+  }
+}
+
+.aqua-glow {
+  animation: aqua-glow 2s infinite ease-in-out;
+}
+
+
+@keyframes red-glow {
+  0% {
+    box-shadow: 0 0 3px  rgba(207, 123, 204, 0.871), 0 0 10px  rgba(207, 123, 204, 0.871);
+  }
+  50% {
+    box-shadow: 0 0 4px  rgba(207, 123, 204, 0.871), 0 0 30px  rgba(207, 123, 204, 0.871);
+  }
+  100% {
+    box-shadow: 0 0 3px rgba(207, 123, 204, 0.871), 0 0 10px  rgba(207, 123, 204, 0.871);
+  }
+}
+
+.red-glow {
+  animation: red-glow 2s infinite ease-in-out;
+}
+
+.btn-container{
+    margin-top: 3vh;
+    display: flex;
+    height: fit-content;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5vw;
+}
+
+.home-btn, .play-again-btn, .settings-btn{
+    width: 20vh;
+    height: 10vh;
+    font-size: large;
+    background-color: #844bcfb9;
+}
+
+.play-again-btn:hover{
+    font-size: large;
+    background-color: #844bcf;
+}
+
+.home-btn:hover{
+     font-size: large;
+    background-color: #844bcf;
+}
+
+
+.settings-btn:hover
+{
+     font-size: large;
+    background-color: #844bcf;
+}
+.msg
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+    font-size: xxx-large;
+}

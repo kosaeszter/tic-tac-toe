@@ -210,8 +210,8 @@ export function updateBoard(board, coord, mark) {
 }
 
 
-//_________________LOGIC____________________________________________________________________________
-function thisIsPureHapinessss() {
+/*
+function play() {
     let N = parseInt(prompt("Board size (N): "));
     let n = parseInt(prompt("Win condition size (n): "));
 
@@ -269,4 +269,4 @@ function thisIsPureHapinessss() {
         playerIndex = (playerIndex + 1) % 2;
     }
     console.log("It's a tie! The board is full.");
-}
+} */

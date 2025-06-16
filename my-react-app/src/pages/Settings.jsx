@@ -34,7 +34,6 @@ function Settings({player})
           ))}
         </select>
 
-
       <div>
         How many symbols do you need to collect to win? (in a row, column or diagonal)</div>
         <select value={winLength} onChange={(e) => setWinLength(Number(e.target.value))}>
