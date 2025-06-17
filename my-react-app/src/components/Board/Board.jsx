@@ -23,8 +23,6 @@ function Board({ matrix, dimension, winLength, mode }) {
     whoPlays = ["human", "human"];
   }
 
-
-
   const playerMark = ["X", "O"];
   const [playerIndex, setPlayerIndex] = useState(0);
 
@@ -72,16 +70,32 @@ function Board({ matrix, dimension, winLength, mode }) {
       return;
     }
 
+    //checkwin()
+
     if (board[x][y] !== " ") return;
 
     if (whoPlays[playerIndex] == "human") {
       humanPlay(x, y);
       setPlayerIndex((playerIndex + 1) % 2);
 
+      // PREFER LOCAL VARIABLES
+      //copy board to a local variable => boardlocal
+      // checkwin()
+
+      // if win => return 
+      
+      //else{
+       // aiplay() 
+       //  setPlayerIndex((playerIndex + 1) % 2);
+       // setBoard
+
+       //setBoard(boardlocal)
+    //}
+
     }
   }
 
-  useEffect(() => {
+ /* useEffect(() => {
     if (whoPlays[playerIndex] === "ai") {
       if (!isRunning) {
         return;
@@ -92,12 +106,13 @@ function Board({ matrix, dimension, winLength, mode }) {
       }, 300);
       return () => clearTimeout(timer);
     }
-  }, [playerIndex]);
+  }, [playerIndex]);*/ 
 
   useEffect(() => {
     if (!isRunning) {
       return;
     } 
+
     else {
       if (checkBoardIsWon(board, N, n, playerMark[(playerIndex + 1) % 2])) {
         setMessage(`${playerMark[(playerIndex + 1) % 2]} won!`);
