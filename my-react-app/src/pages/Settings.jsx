@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 
-function Settings({player})
+function Settings()
 {
-    const location = useLocation();
-    const mode = location.state?.mode;
-    const navigate = useNavigate();
+  const location = useLocation();
+  const mode = location.state?.mode;
+  const navigate = useNavigate();
 
   const [boardSize, setBoardSize] = useState(3);
   const [winLength, setWinLength] = useState(3);

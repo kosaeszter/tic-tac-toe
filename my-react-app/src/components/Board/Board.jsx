@@ -26,94 +26,73 @@ function Board({ matrix, dimension, winLength, mode }) {
   const playerMark = ["X", "O"];
   const [playerIndex, setPlayerIndex] = useState(0);
 
-  function humanPlay(x, y) {
-    if (!isRunning) {
-      return;
-    }
-    if (board[x][y] == " ") {
-      const newBoard = board.map(row => [...row]);
-      newBoard[x][y] = playerMark[playerIndex];
-      setBoard(newBoard);
-    }
+  function tie(newBoard) {
+    setMessage("It's a tie!");
+    setIsRunning(false);
+    setBoard(newBoard);
   }
 
-
-  function aiPlay() {
-    if (!isRunning) {
-      return;
-    } else {
-      let chosenCoord = aiCoordsFullBoard(board, N, n, playerMark[playerIndex]);
-      if (!chosenCoord) {
-        chosenCoord = aiCoordsFullBoard(board, N, n, playerMark[(playerIndex + 1) % 2]);
-      }
-      if (!chosenCoord) {
-        chosenCoord = randomAiCoord(board, N, playerMark[playerIndex]);
-      }
-      const newBoard = board.map(row => [...row]);
-      newBoard[chosenCoord[0]][chosenCoord[1]] = playerMark[playerIndex];
-      setBoard(newBoard);
-    }
+  function win(newBoard, currentIndex) {
+    setWinner(playerMark[currentIndex]);
+    setMessage(`${playerMark[currentIndex]} won!`);
+    setIsRunning(false);
+    setBoard(newBoard);
   }
 
-  function checkWin() {
-    console.log(board, N, n, playerMark[playerIndex]);
-    if (checkBoardIsWon(board, N, n, playerMark[playerIndex])) {
-      setIsRunning(false);
-      setWinner(playerMark[playerIndex]);
-      setMessage(`${playerMark[playerIndex]} won!`);
-      navigate("/end-of-the-game");
-    }
-  }
 
   function play(x, y) {
-    if (!isRunning) {
-      return;
-    }
+    if (!isRunning || board[x][y] !== " ") return;
 
-    //checkwin()
+    const newBoard = board.map(row => [...row]);
+    let currentIndex = playerIndex;
 
-    if (board[x][y] !== " ") return;
+    if (whoPlays[currentIndex] === "human") {
+      newBoard[x][y] = playerMark[currentIndex];
 
-    if (whoPlays[playerIndex] == "human") {
-      humanPlay(x, y);
-      setPlayerIndex((playerIndex + 1) % 2);
+      if (checkBoardIsWon(newBoard, N, n, playerMark[currentIndex])) {
+        win(newBoard, currentIndex);
+        return;
+      }
+      if (isBoardFull(newBoard)) {
+        tie(newBoard);
+        return;
+      }
+      currentIndex = (currentIndex + 1) % 2;
 
-      // PREFER LOCAL VARIABLES
-      //copy board to a local variable => boardlocal
-      // checkwin()
+      if (whoPlays[currentIndex] === "ai") {
+        let aiCoord = aiCoordsFullBoard(newBoard, N, n, playerMark[currentIndex]);
+        if (!aiCoord) {
+          aiCoord = aiCoordsFullBoard(newBoard, N, n, playerMark[(currentIndex + 1) % 2]);
+        }
+        if (!aiCoord) {
+          aiCoord = randomAiCoord(newBoard, N, playerMark[currentIndex]);
+        }
 
-      // if win => return 
-      
-      //else{
-       // aiplay() 
-       //  setPlayerIndex((playerIndex + 1) % 2);
-       // setBoard
+        newBoard[aiCoord[0]][aiCoord[1]] = playerMark[currentIndex];
 
-       //setBoard(boardlocal)
-    //}
+        if (checkBoardIsWon(newBoard, N, n, playerMark[currentIndex])) {
+          win(newBoard, currentIndex);
+          return;
+        }
 
+        if (isBoardFull(newBoard)) {
+          tie(newBoard);
+          return;
+        }
+        currentIndex = (currentIndex + 1) % 2;
+      }
+
+      setMessage(`Player ${playerMark[currentIndex]}'s turn`);
+      setPlayerIndex(currentIndex);
+      setBoard(newBoard);
     }
   }
 
- /* useEffect(() => {
-    if (whoPlays[playerIndex] === "ai") {
-      if (!isRunning) {
-        return;
-      }
-      const timer = setTimeout(() => {
-        aiPlay();
-        setPlayerIndex((playerIndex + 1) % 2);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [playerIndex]);*/ 
 
   useEffect(() => {
     if (!isRunning) {
       return;
-    } 
-
-    else {
+    } else {
       if (checkBoardIsWon(board, N, n, playerMark[(playerIndex + 1) % 2])) {
         setMessage(`${playerMark[(playerIndex + 1) % 2]} won!`);
         setWinner(playerMark[(playerIndex + 1) % 2]);
@@ -154,14 +133,14 @@ function Board({ matrix, dimension, winLength, mode }) {
         </div>
       </div>
       <div className="btn-container">
-      <button className="home-btn" onClick={()=>navigate("/")}>🏡 Home</button>
-      <button className="play-again-btn" onClick={()=>
-        {setBoard(matrix);
+        <button className="home-btn" onClick={() => { navigate("/"); setPlayerIndex(0) }}>🏡 Home</button>
+        <button className="play-again-btn" onClick={() => {
+          setBoard(matrix);
           setWinner(null);
           setIsRunning(true);
         }
         }> 🔁 Restart</button>
-      <button className="settings-btn" onClick={()=>navigate("/settings")}>⚙️Settings</button>
+        <button className="settings-btn" onClick={() => { navigate("/settings", {state: { mode: mode }}) }}>⚙️Settings</button>
       </div>
     </>);
 
